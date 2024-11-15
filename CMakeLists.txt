@@ -164,10 +164,6 @@ if(DEBUG)
 	set(CMAKE_BUILD_TYPE Debug)
 endif(DEBUG)
 
-if(BUILD_EXAMPLES)
-    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/examples)
-endif(BUILD_EXAMPLES)
-
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/src)
 
 install(FILES ${API_HEADERS} DESTINATION include/libiec61850 COMPONENT Development)
