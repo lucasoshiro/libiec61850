@@ -124,7 +124,6 @@ add_definitions(-DMBEDTLS_CONFIG_FILE="mbedtls_config.h")
 endif(CONFIG_USE_EXTERNAL_MBEDTLS_DYNLIB)
 
 set (libhal_SRCS ${libhal_SRCS}
-  ${CMAKE_CURRENT_LIST_DIR}/tls/mbedtls/tls_mbedtls.c
 )
 
 IF(MSVC)
