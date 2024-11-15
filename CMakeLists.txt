@@ -90,7 +90,6 @@ set(API_HEADERS
     hal/inc/hal_base.h
     hal/inc/hal_time.h
     hal/inc/hal_thread.h
-    hal/inc/hal_filesystem.h
     hal/inc/hal_ethernet.h
     hal/inc/hal_socket.h
     hal/inc/tls_config.h

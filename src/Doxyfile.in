@@ -805,7 +805,6 @@ INPUT                  = "iec61850/inc/iec61850_client.h" \
                          "hal/inc/hal_socket.h" \
                          "hal/inc/hal_thread.h" \
                          "hal/inc/hal_ethernet.h" \
-                         "hal/inc/hal_filesystem.h" \
                          "hal/inc/hal_time.h" \
                          "logging/logging_api.h"
 

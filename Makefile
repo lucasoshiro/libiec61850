@@ -34,7 +34,6 @@ ifeq ($(HAL_IMPL), WIN32)
 LIB_SOURCE_DIRS += hal/socket/win32
 LIB_SOURCE_DIRS += hal/thread/win32
 LIB_SOURCE_DIRS += hal/ethernet/win32
-LIB_SOURCE_DIRS += hal/filesystem/win32
 LIB_SOURCE_DIRS += hal/time/win32
 LIB_SOURCE_DIRS += hal/serial/win32
 LIB_SOURCE_DIRS += hal/memory
@@ -42,7 +41,6 @@ else ifeq ($(HAL_IMPL), POSIX)
 LIB_SOURCE_DIRS += hal/socket/linux
 LIB_SOURCE_DIRS += hal/thread/linux
 LIB_SOURCE_DIRS += hal/ethernet/linux
-LIB_SOURCE_DIRS += hal/filesystem/linux
 LIB_SOURCE_DIRS += hal/time/unix
 LIB_SOURCE_DIRS += hal/serial/linux
 LIB_SOURCE_DIRS += hal/memory
@@ -50,14 +48,12 @@ else ifeq ($(HAL_IMPL), BSD)
 LIB_SOURCE_DIRS += hal/socket/bsd
 LIB_SOURCE_DIRS += hal/thread/bsd
 LIB_SOURCE_DIRS += hal/ethernet/bsd
-LIB_SOURCE_DIRS += hal/filesystem/linux
 LIB_SOURCE_DIRS += hal/time/unix
 LIB_SOURCE_DIRS += hal/memory
 else ifeq ($(HAL_IMPL), MACOS)
 LIB_SOURCE_DIRS += hal/socket/bsd
 LIB_SOURCE_DIRS += hal/thread/macos
 LIB_SOURCE_DIRS += hal/ethernet/bsd
-LIB_SOURCE_DIRS += hal/filesystem/linux
 LIB_SOURCE_DIRS += hal/time/unix
 LIB_SOURCE_DIRS += hal/memory
 endif
@@ -94,7 +90,6 @@ endif
 
 LIB_API_HEADER_FILES = hal/inc/hal_time.h 
 LIB_API_HEADER_FILES += hal/inc/hal_thread.h
-LIB_API_HEADER_FILES += hal/inc/hal_filesystem.h
 LIB_API_HEADER_FILES += hal/inc/tls_config.h
 LIB_API_HEADER_FILES += hal/inc/lib_memory.h
 LIB_API_HEADER_FILES += hal/inc/hal_base.h
