@@ -58,24 +58,10 @@ set (lib_common_SRCS
 ./mms/iso_session/iso_session.c
 ./iec61850/client/client_control.c
 ./iec61850/client/client_report_control.c
-./iec61850/client/client_goose_control.c
 ./iec61850/client/client_sv_control.c
 ./iec61850/client/client_report.c
 ./iec61850/client/ied_connection.c
 ./iec61850/common/iec61850_common.c
-./iec61850/server/impl/ied_server.c
-./iec61850/server/impl/ied_server_config.c
-./iec61850/server/impl/client_connection.c
-./iec61850/server/model/model.c
-./iec61850/server/model/dynamic_model.c
-./iec61850/server/model/cdc.c
-./iec61850/server/model/config_file_parser.c
-./iec61850/server/mms_mapping/control.c
-./iec61850/server/mms_mapping/mms_mapping.c
-./iec61850/server/mms_mapping/reporting.c
-./iec61850/server/mms_mapping/mms_goose.c
-./iec61850/server/mms_mapping/mms_sv.c
-./iec61850/server/mms_mapping/logging.c
 ./logging/log_storage.c
 )
 
@@ -173,9 +159,7 @@ set (lib_asn1c_SRCS
 )
 
 set (lib_goose_SRCS
-./goose/goose_subscriber.c
-./goose/goose_receiver.c
-./goose/goose_publisher.c
+
 )
 
 set (lib_sv_SRCS
