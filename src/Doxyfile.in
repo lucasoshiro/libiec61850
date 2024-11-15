@@ -802,7 +802,6 @@ INPUT                  = "iec61850/inc/iec61850_client.h" \
                          "mms/inc/mms_types.h" \
                          "mms/inc/mms_client_connection.h" \
                          "mms/inc/iso_connection_parameters.h" \
-                         "hal/inc/hal_socket.h" \
                          "hal/inc/hal_thread.h" \
                          "hal/inc/hal_ethernet.h" \
                          "hal/inc/hal_time.h" \

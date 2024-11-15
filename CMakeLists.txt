@@ -91,7 +91,6 @@ set(API_HEADERS
     hal/inc/hal_time.h
     hal/inc/hal_thread.h
     hal/inc/hal_ethernet.h
-    hal/inc/hal_socket.h
     hal/inc/tls_config.h
     src/common/inc/libiec61850_common_api.h
     src/common/inc/linked_list.h

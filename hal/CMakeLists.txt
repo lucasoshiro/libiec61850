@@ -38,8 +38,7 @@ include_directories(
 )
 
 set (libhal_linux_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/linux/socket_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/linux/ethernet_linux.c
+  ${CMAKE_CURRENT_LIST_DIR}/ethernet/linux/ethernet_linux.c
  ${CMAKE_CURRENT_LIST_DIR}/thread/linux/thread_linux.c
   ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
  ${CMAKE_CURRENT_LIST_DIR}/serial/linux/serial_port_linux.c
@@ -47,7 +46,6 @@ set (libhal_linux_SRCS
 )
 
 set (libhal_windows_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/win32/socket_win32.c
  ${CMAKE_CURRENT_LIST_DIR}/thread/win32/thread_win32.c
   ${CMAKE_CURRENT_LIST_DIR}/time/win32/time.c
  ${CMAKE_CURRENT_LIST_DIR}/serial/win32/serial_port_win32.c
@@ -61,16 +59,14 @@ set (libhal_windows_SRCS ${libhal_windows_SRCS}
 endif(WITH_WPCAP)
 
 set (libhal_bsd_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
+  ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
  ${CMAKE_CURRENT_LIST_DIR}/thread/bsd/thread_bsd.c
   ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
  ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
 )
 
 set (libhal_macos_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
+  ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
  ${CMAKE_CURRENT_LIST_DIR}/thread/macos/thread_macos.c
   ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
  ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
