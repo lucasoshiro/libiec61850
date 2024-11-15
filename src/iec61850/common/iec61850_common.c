@@ -27,7 +27,6 @@
 #include "libiec61850_platform_includes.h"
 
 #include "conversions.h"
-#include "mms_value_internal.h"
 
 Validity
 Quality_getValidity(Quality* self)
@@ -435,20 +434,6 @@ Timestamp_getTimeInNs(Timestamp* self)
 
     return timeval64;
 }
-
-static int
-getNumberOfDigits(int value)
-{
-    int numberOfDigits = 1;
-
-    while (value > 9) {
-        numberOfDigits++;
-        value /= 10;
-    }
-
-    return numberOfDigits;
-}
-
 
 char*
 LibIEC61850_getVersionString()
