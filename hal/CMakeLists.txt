@@ -70,7 +70,8 @@ set (libhal_macos_SRCS
  ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
 )
 
-IF(WIN32)
+IF(NS3)
+ELSEIF(WIN32)
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../third_party/winpcap/Lib/wpcap.lib")
 message("Found winpcap -> can compile with GOOSE support")
@@ -100,7 +101,7 @@ set (libhal_SRCS
     ${libhal_linux_SRCS}
 )
 ENDIF(APPLE)
-ENDIF(WIN32)
+ENDIF(NS3)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC" )
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC" )

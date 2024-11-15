@@ -56,6 +56,9 @@ set(CONFIG_IEC61850_SG_RESVTMS 300 CACHE STRING "Configure the maximum number of
 
 set(CONFIG_REPORTING_DEFAULT_REPORT_BUFFER_SIZE "65536" CACHE STRING "Default buffer size for buffered reports in byte" )
 
+# ns3 support
+option(NS3 "Build for NS3" OFF)
+
 # advanced options
 option(DEBUG "Enable debugging mode (include assertions)" OFF)
 option(DEBUG_SOCKET "Enable printf debugging for socket layer" ${DEBUG})
