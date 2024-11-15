@@ -367,12 +367,6 @@ Quality_unsetFlag(Quality* self, int flag);
 LIB61850_API bool
 Quality_isFlagSet(Quality* self, int flag);
 
-LIB61850_API Quality
-Quality_fromMmsValue(const MmsValue* mmsValue);
-
-LIB61850_API MmsValue*
-Quality_toMmsValue(Quality* self, MmsValue* mmsValue);
-
 /** @} */
 
 /**
@@ -387,28 +381,6 @@ typedef enum {
     DBPOS_ON = 2,
     DBPOS_BAD_STATE = 3
 } Dbpos;
-
-
-/**
- * \brief convert MMS bit string to Dbpos enumeration type
- *
- * \param mmsValue the MmsValue instance representing the Dbpos value
- *
- * \return the corresponding Dbpos value
- */
-LIB61850_API Dbpos
-Dbpos_fromMmsValue(const MmsValue* mmsValue);
-
-/**
- * \brief conver Dbpos to MMS bit string
- *
- * \param mmsValue the MmsValue instance representing a Dbpos value or NULL to create a new MmsValue instance
- * \param a Dbpos value
- *
- * \return the corresponding MmsValue instance
- */
-LIB61850_API MmsValue*
-Dbpos_toMmsValue(MmsValue* mmsValue, Dbpos dbpos);
 
 /** @} */
 
@@ -505,29 +477,6 @@ Timestamp_setTimeInMilliseconds(Timestamp* self, msSinceEpoch msTime);
  */
 LIB61850_API void
 Timestamp_setTimeInNanoseconds(Timestamp* self, nsSinceEpoch nsTime);
-
-LIB61850_API void
-Timestamp_setByMmsUtcTime(Timestamp* self, const MmsValue* mmsValue);
-
-/**
- * \brief Set an MmsValue instance of type UTCTime to the timestamp value
- *
- * \param self the Timestamp instance
- * \param mmsValue the mmsValue instance, if NULL a new instance will be created
- */
-LIB61850_API MmsValue*
-Timestamp_toMmsValue(Timestamp* self, MmsValue* mmsValue);
-
-/**
- * \brief Get the Timestamp value from an MmsValue instance of type MMS_UTC_TIME
- *
- * \param self the Timestamp instance or NULL to create a new instance
- * \param mmsValue the mmsValue instance of type MMS_UTC_TIME
- *
- * \return the updated Timestamp value or NULL in case of an error
- */
-LIB61850_API Timestamp*
-Timestamp_fromMmsValue(Timestamp* self, MmsValue* mmsValue);
 
 /**
  * \brief Get the version of the library as string
