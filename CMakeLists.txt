@@ -172,10 +172,6 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/src)
 
 install(FILES ${API_HEADERS} DESTINATION include/libiec61850 COMPONENT Development)
 
-if(BUILD_PYTHON_BINDINGS)
-    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/pyiec61850)
-endif(BUILD_PYTHON_BINDINGS)
-
 set(CPACK_PACKAGE_DESCRIPTION "IEC 61850 MMS/GOOSE client and server library")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "IEC 61850 MMS/GOOSE client and server library")
 set(CPACK_PACKAGE_VENDOR "MZ Automation GmbH")
