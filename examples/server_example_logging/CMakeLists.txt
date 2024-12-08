@@ -17,7 +17,7 @@ set(sqlite_SRCS
    ${CMAKE_CURRENT_LIST_DIR}/../../third_party/sqlite/sqlite3.cc
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION")
 
 IF(MSVC)
 set_source_files_properties(${server_example_SRCS}
