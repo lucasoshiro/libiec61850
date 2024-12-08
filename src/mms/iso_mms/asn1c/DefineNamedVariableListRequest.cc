@@ -90,8 +90,8 @@ static ber_tlv_tag_t asn_DEF_listOfVariable_tags_3[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static asn_SET_OF_specifics_t asn_SPC_listOfVariable_specs_3 = {
-	sizeof(struct DefineNamedVariableListRequest__listOfVariable),
-	offsetof(struct DefineNamedVariableListRequest__listOfVariable, _asn_ctx),
+	sizeof(struct DefineNamedVariableListRequest::DefineNamedVariableListRequest__listOfVariable),
+	offsetof(struct DefineNamedVariableListRequest::DefineNamedVariableListRequest__listOfVariable, _asn_ctx),
 	0,	/* XER encoding is XMLDelimitedItemList */
 };
 static /* Use -fall-defs-global to expose */

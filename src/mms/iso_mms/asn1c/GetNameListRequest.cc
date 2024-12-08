@@ -10,7 +10,7 @@
 #include "GetNameListRequest.h"
 
 static asn_TYPE_member_t asn_MBR_objectScope_3[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest__objectScope, choice.vmdSpecific),
+	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest::GetNameListRequest__objectScope, choice.vmdSpecific),
 		(ASN_TAG_CLASS_CONTEXT | (0 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NULL,
@@ -19,7 +19,7 @@ static asn_TYPE_member_t asn_MBR_objectScope_3[] = {
 		0,
 		"vmdSpecific"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest__objectScope, choice.domainSpecific),
+	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest::GetNameListRequest__objectScope, choice.domainSpecific),
 		(ASN_TAG_CLASS_CONTEXT | (1 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Identifier,
@@ -28,7 +28,7 @@ static asn_TYPE_member_t asn_MBR_objectScope_3[] = {
 		0,
 		"domainSpecific"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest__objectScope, choice.aaSpecific),
+	{ ATF_NOFLAGS, 0, offsetof(struct GetNameListRequest::GetNameListRequest__objectScope, choice.aaSpecific),
 		(ASN_TAG_CLASS_CONTEXT | (2 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NULL,
@@ -44,10 +44,10 @@ static asn_TYPE_tag2member_t asn_MAP_objectScope_tag2el_3[] = {
     { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 2, 0, 0 } /* aaSpecific at 456 */
 };
 static asn_CHOICE_specifics_t asn_SPC_objectScope_specs_3 = {
-	sizeof(struct GetNameListRequest__objectScope),
-	offsetof(struct GetNameListRequest__objectScope, _asn_ctx),
-	offsetof(struct GetNameListRequest__objectScope, present),
-	sizeof(((struct GetNameListRequest__objectScope *)0)->present),
+	sizeof(struct GetNameListRequest::GetNameListRequest__objectScope),
+	offsetof(struct GetNameListRequest::GetNameListRequest__objectScope, _asn_ctx),
+	offsetof(struct GetNameListRequest::GetNameListRequest__objectScope, present),
+	sizeof(((struct GetNameListRequest::GetNameListRequest__objectScope *)0)->present),
 	asn_MAP_objectScope_tag2el_3,
 	3,	/* Count of tags in the map */
 	0,

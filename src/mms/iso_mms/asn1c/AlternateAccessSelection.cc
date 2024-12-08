@@ -10,7 +10,7 @@
 #include "AlternateAccessSelection.h"
 
 static asn_TYPE_member_t asn_MBR_indexRange_6[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, lowIndex),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection::AlternateAccessSelection__selectAlternateAccess__accessSelection_u::AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, lowIndex),
 		(ASN_TAG_CLASS_CONTEXT | (0 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -19,7 +19,7 @@ static asn_TYPE_member_t asn_MBR_indexRange_6[] = {
 		0,
 		"lowIndex"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, numberOfElements),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection::AlternateAccessSelection__selectAlternateAccess__accessSelection_u::AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, numberOfElements),
 		(ASN_TAG_CLASS_CONTEXT | (1 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -38,8 +38,8 @@ static asn_TYPE_tag2member_t asn_MAP_indexRange_tag2el_6[] = {
     { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* numberOfElements at 553 */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_indexRange_specs_6 = {
-	sizeof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange),
-	offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, _asn_ctx),
+	sizeof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection::AlternateAccessSelection__selectAlternateAccess__accessSelection_u::AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection::AlternateAccessSelection__selectAlternateAccess__accessSelection_u::AlternateAccessSelection__selectAlternateAccess__accessSelection__indexRange, _asn_ctx),
 	asn_MAP_indexRange_tag2el_6,
 	2,	/* Count of tags in the map */
 	0, 0, 0,	/* Optional elements (not needed) */
@@ -72,7 +72,7 @@ asn_TYPE_descriptor_t asn_DEF_indexRange_6 = {
 };
 
 static asn_TYPE_member_t asn_MBR_accessSelection_3[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.component),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.component),
 		(ASN_TAG_CLASS_CONTEXT | (0 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Identifier,
@@ -81,7 +81,7 @@ static asn_TYPE_member_t asn_MBR_accessSelection_3[] = {
 		0,
 		"component"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.index),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.index),
 		(ASN_TAG_CLASS_CONTEXT | (1 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -90,7 +90,7 @@ static asn_TYPE_member_t asn_MBR_accessSelection_3[] = {
 		0,
 		"index"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.indexRange),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.indexRange),
 		(ASN_TAG_CLASS_CONTEXT | (2 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_indexRange_6,
@@ -99,7 +99,7 @@ static asn_TYPE_member_t asn_MBR_accessSelection_3[] = {
 		0,
 		"indexRange"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.allElements),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, choice.allElements),
 		(ASN_TAG_CLASS_CONTEXT | (3 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NULL,
@@ -116,10 +116,10 @@ static asn_TYPE_tag2member_t asn_MAP_accessSelection_tag2el_3[] = {
     { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 } /* allElements at 554 */
 };
 static asn_CHOICE_specifics_t asn_SPC_accessSelection_specs_3 = {
-	sizeof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection),
-	offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, _asn_ctx),
-	offsetof(struct AlternateAccessSelection__selectAlternateAccess__accessSelection, present),
-	sizeof(((struct AlternateAccessSelection__selectAlternateAccess__accessSelection *)0)->present),
+	sizeof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, _asn_ctx),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection, present),
+	sizeof(((struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess::AlternateAccessSelection__selectAlternateAccess__accessSelection *)0)->present),
 	asn_MAP_accessSelection_tag2el_3,
 	4,	/* Count of tags in the map */
 	0,
@@ -149,7 +149,7 @@ asn_TYPE_descriptor_t asn_DEF_accessSelection_3 = {
 };
 
 static asn_TYPE_member_t asn_MBR_selectAlternateAccess_2[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess, accessSelection),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess, accessSelection),
 		-1 /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_accessSelection_3,
@@ -158,7 +158,7 @@ static asn_TYPE_member_t asn_MBR_selectAlternateAccess_2[] = {
 		0,
 		"accessSelection"
 		},
-	{ ATF_POINTER, 0, offsetof(struct AlternateAccessSelection__selectAlternateAccess, alternateAccess),
+	{ ATF_POINTER, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess, alternateAccess),
 		(ASN_TAG_CLASS_UNIVERSAL | (16 << 2)),
 		0,
 		&asn_DEF_AlternateAccess,
@@ -180,8 +180,8 @@ static asn_TYPE_tag2member_t asn_MAP_selectAlternateAccess_tag2el_2[] = {
     { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 0, 0, 0 } /* allElements at 554 */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_selectAlternateAccess_specs_2 = {
-	sizeof(struct AlternateAccessSelection__selectAlternateAccess),
-	offsetof(struct AlternateAccessSelection__selectAlternateAccess, _asn_ctx),
+	sizeof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess, _asn_ctx),
 	asn_MAP_selectAlternateAccess_tag2el_2,
 	5,	/* Count of tags in the map */
 	0, 0, 0,	/* Optional elements (not needed) */
@@ -214,7 +214,7 @@ asn_TYPE_descriptor_t asn_DEF_selectAlternateAccess_2 = {
 };
 
 static asn_TYPE_member_t asn_MBR_indexRange_14[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess__indexRange, lowIndex),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess::AlternateAccessSelection__selectAccess_u::AlternateAccessSelection__selectAccess__indexRange, lowIndex),
 		(ASN_TAG_CLASS_CONTEXT | (0 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -223,7 +223,7 @@ static asn_TYPE_member_t asn_MBR_indexRange_14[] = {
 		0,
 		"lowIndex"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess__indexRange, numberOfElements),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess::AlternateAccessSelection__selectAccess_u::AlternateAccessSelection__selectAccess__indexRange, numberOfElements),
 		(ASN_TAG_CLASS_CONTEXT | (1 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -242,8 +242,8 @@ static asn_TYPE_tag2member_t asn_MAP_indexRange_tag2el_14[] = {
     { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 1, 0, 0 } /* numberOfElements at 566 */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_indexRange_specs_14 = {
-	sizeof(struct AlternateAccessSelection__selectAccess__indexRange),
-	offsetof(struct AlternateAccessSelection__selectAccess__indexRange, _asn_ctx),
+	sizeof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess::AlternateAccessSelection__selectAccess_u::AlternateAccessSelection__selectAccess__indexRange),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess::AlternateAccessSelection__selectAccess_u::AlternateAccessSelection__selectAccess__indexRange, _asn_ctx),
 	asn_MAP_indexRange_tag2el_14,
 	2,	/* Count of tags in the map */
 	0, 0, 0,	/* Optional elements (not needed) */
@@ -276,7 +276,7 @@ asn_TYPE_descriptor_t asn_DEF_indexRange_14 = {
 };
 
 static asn_TYPE_member_t asn_MBR_selectAccess_11[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess, choice.component),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, choice.component),
 		(ASN_TAG_CLASS_CONTEXT | (1 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Identifier,
@@ -285,7 +285,7 @@ static asn_TYPE_member_t asn_MBR_selectAccess_11[] = {
 		0,
 		"component"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess, choice.index),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, choice.index),
 		(ASN_TAG_CLASS_CONTEXT | (2 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Unsigned32,
@@ -294,7 +294,7 @@ static asn_TYPE_member_t asn_MBR_selectAccess_11[] = {
 		0,
 		"index"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess, choice.indexRange),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, choice.indexRange),
 		(ASN_TAG_CLASS_CONTEXT | (3 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_indexRange_14,
@@ -303,7 +303,7 @@ static asn_TYPE_member_t asn_MBR_selectAccess_11[] = {
 		0,
 		"indexRange"
 		},
-	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection__selectAccess, choice.allElements),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, choice.allElements),
 		(ASN_TAG_CLASS_CONTEXT | (4 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NULL,
@@ -320,10 +320,10 @@ static asn_TYPE_tag2member_t asn_MAP_selectAccess_tag2el_11[] = {
     { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 } /* allElements at 567 */
 };
 static asn_CHOICE_specifics_t asn_SPC_selectAccess_specs_11 = {
-	sizeof(struct AlternateAccessSelection__selectAccess),
-	offsetof(struct AlternateAccessSelection__selectAccess, _asn_ctx),
-	offsetof(struct AlternateAccessSelection__selectAccess, present),
-	sizeof(((struct AlternateAccessSelection__selectAccess *)0)->present),
+	sizeof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, _asn_ctx),
+	offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess, present),
+	sizeof(((struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAccess *)0)->present),
 	asn_MAP_selectAccess_tag2el_11,
 	4,	/* Count of tags in the map */
 	0,

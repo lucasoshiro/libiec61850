@@ -10,7 +10,7 @@
 #include "AlternateAccess.h"
 
 static asn_TYPE_member_t asn_MBR_named_4[] = {
-	{ ATF_NOFLAGS, 0, offsetof(struct named, componentName),
+	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccess__Member::AlternateAccess__Member_u::named, componentName),
 		(ASN_TAG_CLASS_CONTEXT | (0 << 2)),
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Identifier,
@@ -19,7 +19,7 @@ static asn_TYPE_member_t asn_MBR_named_4[] = {
 		0,
 		"componentName"
 		},
-	{ ATF_POINTER, 0, offsetof(struct named, access),
+	{ ATF_POINTER, 0, offsetof(struct AlternateAccess__Member::AlternateAccess__Member_u::named, access),
 		-1 /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_AlternateAccessSelection,
@@ -42,8 +42,8 @@ static asn_TYPE_tag2member_t asn_MAP_named_tag2el_4[] = {
     { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 1, 0, 0 } /* allElements at 567 */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_named_specs_4 = {
-	sizeof(struct named),
-	offsetof(struct named, _asn_ctx),
+	sizeof(struct AlternateAccess__Member::AlternateAccess__Member_u::named),
+	offsetof(struct AlternateAccess__Member::AlternateAccess__Member_u::named, _asn_ctx),
 	asn_MAP_named_tag2el_4,
 	6,	/* Count of tags in the map */
 	0, 0, 0,	/* Optional elements (not needed) */

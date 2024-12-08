@@ -25,8 +25,8 @@ static ber_tlv_tag_t asn_DEF_listOfIdentifier_tags_2[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static asn_SET_OF_specifics_t asn_SPC_listOfIdentifier_specs_2 = {
-	sizeof(struct GetNameListResponse__listOfIdentifier),
-	offsetof(struct GetNameListResponse__listOfIdentifier, _asn_ctx),
+	sizeof(struct GetNameListResponse::GetNameListResponse__listOfIdentifier),
+	offsetof(struct GetNameListResponse::GetNameListResponse__listOfIdentifier, _asn_ctx),
 	0,	/* XER encoding is XMLDelimitedItemList */
 };
 static /* Use -fall-defs-global to expose */

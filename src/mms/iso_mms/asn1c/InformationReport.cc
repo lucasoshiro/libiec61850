@@ -25,8 +25,8 @@ static ber_tlv_tag_t asn_DEF_listOfAccessResult_tags_3[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static asn_SET_OF_specifics_t asn_SPC_listOfAccessResult_specs_3 = {
-	sizeof(struct InformationReport__listOfAccessResult),
-	offsetof(struct InformationReport__listOfAccessResult, _asn_ctx),
+	sizeof(struct InformationReport::InformationReport__listOfAccessResult),
+	offsetof(struct InformationReport::InformationReport__listOfAccessResult, _asn_ctx),
 	2,	/* XER encoding is XMLValueList */
 };
 static /* Use -fall-defs-global to expose */
