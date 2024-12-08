@@ -57,6 +57,9 @@ mmsClient_parseStatusResponse(MmsConnection self, ByteBuffer* response, int bufP
     uint8_t* buffer = ByteBuffer_getBuffer(response);
     int maxBufPos = ByteBuffer_getSize(response);
     int length;
+    bool hasPhysicalStatus = false;
+    bool hasLogicalStatus = false;
+    int endPos;
 
     uint8_t tag = buffer[bufPos++];
 
@@ -69,10 +72,7 @@ mmsClient_parseStatusResponse(MmsConnection self, ByteBuffer* response, int bufP
     bufPos = BerDecoder_decodeLength(buffer, &length, bufPos, maxBufPos);
     if (bufPos < 0) goto exit_error;
 
-    int endPos = bufPos + length;
-
-    bool hasPhysicalStatus = false;
-    bool hasLogicalStatus = false;
+    endPos = bufPos + length;
 
     while (bufPos < endPos) {
         tag = buffer[bufPos++];

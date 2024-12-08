@@ -215,6 +215,10 @@ createVariableAccessAttributesResponse(
 
 	MmsVariableSpecification* namedVariable = NULL;
 
+	asn_enc_rval_t rval;
+	MmsPdu_t* mmsPdu;
+	GetVariableAccessAttributesResponse_t* getVarAccessAttr;
+
 	if (domainId != NULL) {
 	    MmsDomain* domain = MmsDevice_getDomain(device, domainId);
 
@@ -243,12 +247,11 @@ createVariableAccessAttributesResponse(
 		goto exit_function;
 	}
 
-	MmsPdu_t* mmsPdu = mmsServer_createConfirmedResponse(invokeId);
+	mmsPdu = mmsServer_createConfirmedResponse(invokeId);
 
 	mmsPdu->choice.confirmedResponsePdu.confirmedServiceResponse.present =
 			ConfirmedServiceResponse_PR_getVariableAccessAttributes;
 
-	GetVariableAccessAttributesResponse_t* getVarAccessAttr;
 
 	getVarAccessAttr = &(mmsPdu->choice.confirmedResponsePdu.
 			confirmedServiceResponse.choice.getVariableAccessAttributes);
@@ -257,8 +260,7 @@ createVariableAccessAttributesResponse(
 
 	createTypeSpecification(namedVariable, &getVarAccessAttr->typeSpecification);
 
-	asn_enc_rval_t rval =
-	        der_encode(&asn_DEF_MmsPdu, mmsPdu, mmsServer_write_out, (void*) response);
+	rval = der_encode(&asn_DEF_MmsPdu, mmsPdu, mmsServer_write_out, (void*) response);
 
 	if (rval.encoded == -1) {
 	    response->size = 0;

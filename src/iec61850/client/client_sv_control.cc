@@ -279,6 +279,11 @@ ClientSVControlBlock_getDstAddress(ClientSVControlBlock self)
     self->lastError = IED_ERROR_OK;
 
     MmsValue* dstAddrValue;
+    MmsValue* appID;
+    MmsValue* addr;
+    uint8_t* addrBuf;
+    MmsValue* prio;
+    MmsValue* vid;
 
     if (self->isMulticast)
         dstAddrValue = IedConnection_readObject(self->connection, &(self->lastError), refBuf, IEC61850_FC_MS);
@@ -300,7 +305,7 @@ ClientSVControlBlock_getDstAddress(ClientSVControlBlock self)
         goto exit_cleanup;
     }
 
-    MmsValue* addr = MmsValue_getElement(dstAddrValue, 0);
+    addr = MmsValue_getElement(dstAddrValue, 0);
 
     if (MmsValue_getType(addr) != MMS_OCTET_STRING) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: SVCB - addr has wrong type\n");
@@ -312,11 +317,11 @@ ClientSVControlBlock_getDstAddress(ClientSVControlBlock self)
         goto exit_cleanup;
     }
 
-    uint8_t* addrBuf = MmsValue_getOctetStringBuffer(addr);
+    addrBuf = MmsValue_getOctetStringBuffer(addr);
 
     memcpy(&(retVal.dstAddress), addrBuf, 6);
 
-    MmsValue* prio = MmsValue_getElement(dstAddrValue, 1);
+    prio = MmsValue_getElement(dstAddrValue, 1);
 
     if (MmsValue_getType(prio) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: SVCB - prio has wrong type\n");
@@ -325,7 +330,7 @@ ClientSVControlBlock_getDstAddress(ClientSVControlBlock self)
 
     retVal.vlanPriority = MmsValue_toUint32(prio);
 
-    MmsValue* vid = MmsValue_getElement(dstAddrValue, 2);
+    vid = MmsValue_getElement(dstAddrValue, 2);
 
     if (MmsValue_getType(vid) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: SVCB - vid has wrong type\n");
@@ -334,7 +339,7 @@ ClientSVControlBlock_getDstAddress(ClientSVControlBlock self)
 
     retVal.vlanId = MmsValue_toUint32(vid);
 
-    MmsValue* appID = MmsValue_getElement(dstAddrValue, 3);
+    appID = MmsValue_getElement(dstAddrValue, 3);
 
     if (MmsValue_getType(appID) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: SVCB - appID has wrong type\n");

@@ -874,6 +874,7 @@ IedConnection_setRCBValuesAsync(IedConnection self, IedClientError* error, Clien
      /* prepare data to send -> create the list of requested itemIds references */
      LinkedList itemIds = LinkedList_create();
      LinkedList values = LinkedList_create();
+    IedConnectionOutstandingCall call;
 
      /* add resv/resvTms as first element and rptEna as last element */
      if (parametersMask & RCB_ELEMENT_RESV) {
@@ -1022,7 +1023,7 @@ IedConnection_setRCBValuesAsync(IedConnection self, IedClientError* error, Clien
          itemId[itemIdLen] = 0;
      }
 
-     IedConnectionOutstandingCall call = iedConnection_allocateOutstandingCall(self);
+     call = iedConnection_allocateOutstandingCall(self);
 
      if (call == NULL) {
          *error = IED_ERROR_OUTSTANDING_CALL_LIMIT_REACHED;

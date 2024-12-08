@@ -1791,6 +1791,9 @@ createMmsDomainFromIedDevice(MmsMapping* self, LogicalDevice* logicalDevice)
 {
     MmsDomain* domain = NULL;
     char domainName[65];
+    int nodesCount;
+    LogicalNode* logicalNode;
+    int i = 0;
 
     int modelNameLength = strlen(self->model->name);
     int ldInstName = strlen(logicalDevice->name);
@@ -1851,15 +1854,14 @@ createMmsDomainFromIedDevice(MmsMapping* self, LogicalDevice* logicalDevice)
 
 #endif /* (CONFIG_IEC61850_LOG_SERVICE == 1) */
 
-    int nodesCount = LogicalDevice_getLogicalNodeCount(logicalDevice);
+    nodesCount = LogicalDevice_getLogicalNodeCount(logicalDevice);
 
     /* Logical nodes are first level named variables */
     domain->namedVariablesCount = nodesCount;
     domain->namedVariables = (MmsVariableSpecification**) GLOBAL_MALLOC(nodesCount * sizeof(MmsVariableSpecification*));
 
-    LogicalNode* logicalNode = (LogicalNode*) logicalDevice->firstChild;
+    logicalNode = (LogicalNode*) logicalDevice->firstChild;
 
-    int i = 0;
     while (logicalNode != NULL) {
         domain->namedVariables[i] = createNamedVariableFromLogicalNode(self,
                 domain, logicalNode);
@@ -3022,6 +3024,7 @@ mmsReadHandler(void* parameter, MmsDomain* domain, char* variableId, MmsServerCo
     MmsMapping* self = (MmsMapping*) parameter;
 
     MmsValue* retValue = NULL;
+    int lnNameLength;
 
     if (DEBUG_IED_SERVER)
         printf("IED_SERVER: mmsReadHandler: Requested %s\n", variableId);
@@ -3031,7 +3034,7 @@ mmsReadHandler(void* parameter, MmsDomain* domain, char* variableId, MmsServerCo
     if (separator == NULL)
         goto exit_function;
 
-    int lnNameLength = separator - variableId;
+    lnNameLength = separator - variableId;
 
 #if (CONFIG_IEC61850_CONTROL_SERVICE == 1)
     /* Controllable objects - CO */

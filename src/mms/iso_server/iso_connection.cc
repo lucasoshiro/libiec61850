@@ -181,6 +181,7 @@ IsoConnection_handleTcpConnection(IsoConnection self, bool isSingleThread)
     }
 #endif
 
+    CotpIndication cotpIndication;
     TpktState tpktState = CotpConnection_readToTpktBuffer(self->cotpConnection);
 
     if (tpktState == TPKT_ERROR)
@@ -189,7 +190,7 @@ IsoConnection_handleTcpConnection(IsoConnection self, bool isSingleThread)
     if (tpktState != TPKT_PACKET_COMPLETE)
         goto exit_function;
 
-    CotpIndication cotpIndication = CotpConnection_parseIncomingMessage(self->cotpConnection);
+    cotpIndication = CotpConnection_parseIncomingMessage(self->cotpConnection);
 
     switch (cotpIndication) {
     case COTP_MORE_FRAGMENTS_FOLLOW:
@@ -651,35 +652,38 @@ IsoConnection_sendMessage(IsoConnection self, ByteBuffer* message)
 {
     bool success = false;
 
+    BufferChain sessionBuffer;
+    BufferChain payloadBuffer;
+    BufferChain presentationBuffer;
+    CotpIndication indication;
+    struct sBufferChain sessionBufferStruct;
+    struct sBufferChain payloadBufferStruct;
+    struct sBufferChain presentationBufferStruct;
+
     if (self->state == ISO_CON_STATE_STOPPED) {
         if (DEBUG_ISO_SERVER)
             printf("DEBUG_ISO_SERVER: sendMessage: connection already stopped!\n");
         goto exit_error;
     }
 
-    struct sBufferChain payloadBufferStruct;
-    BufferChain payloadBuffer = &payloadBufferStruct;
+    payloadBuffer = &payloadBufferStruct;
     payloadBuffer->length = message->size;
     payloadBuffer->partLength = message->size;
     payloadBuffer->partMaxLength = message->size;
     payloadBuffer->buffer = message->buffer;
     payloadBuffer->nextPart = NULL;
 
-    struct sBufferChain presentationBufferStruct;
-    BufferChain presentationBuffer = &presentationBufferStruct;
+    presentationBuffer = &presentationBufferStruct;
     presentationBuffer->buffer = self->sendBuffer;
     presentationBuffer->partMaxLength = SEND_BUF_SIZE;
 
     IsoPresentation_createUserData(self->presentation,
             presentationBuffer, payloadBuffer);
 
-    struct sBufferChain sessionBufferStruct;
-    BufferChain sessionBuffer = &sessionBufferStruct;
+    sessionBuffer = &sessionBufferStruct;
     sessionBuffer->buffer = self->sendBuffer + presentationBuffer->partLength;
 
     IsoSession_createDataSpdu(self->session, sessionBuffer, presentationBuffer);
-
-    CotpIndication indication;
 
     indication = CotpConnection_sendDataMessage(self->cotpConnection, sessionBuffer);
 

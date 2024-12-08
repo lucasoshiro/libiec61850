@@ -156,13 +156,14 @@ MmsValue*
 MmsValue_decodeMmsData(uint8_t* buffer, int bufPos, int bufferLength, int* endBufPos)
 {
     MmsValue* value = NULL;
+    uint8_t tag;
 
     int dataEndBufPos = bufferLength;
 
     if (bufferLength < 1)
         goto exit_with_error;
 
-    uint8_t tag = buffer[bufPos++];
+    tag = buffer[bufPos++];
 
     int dataLength;
 

@@ -1958,13 +1958,16 @@ MmsValue_newUtcTime(uint32_t timeval)
 {
     MmsValue* self = (MmsValue*) GLOBAL_CALLOC(1, sizeof(MmsValue));
 
+    uint8_t* timeArray;
+    uint8_t* valueArray;
+
     if (self == NULL)
         goto exit_function;
 
     self->type = MMS_UTC_TIME;
 
-    uint8_t* timeArray = (uint8_t*) &timeval;
-    uint8_t* valueArray = self->value.utcTime;
+    timeArray = (uint8_t*) &timeval;
+    valueArray = self->value.utcTime;
 
 #if (ORDER_LITTLE_ENDIAN == 1)
     valueArray[0] = timeArray[3];

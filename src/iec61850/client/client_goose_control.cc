@@ -189,6 +189,12 @@ ClientGooseControlBlock_getDstAddress(ClientGooseControlBlock self)
     PhyComAddress retVal;
     memset(&retVal, 0, sizeof(retVal));
 
+    MmsValue* appID;
+    MmsValue* addr;
+    uint8_t* addrBuf;
+    MmsValue* prio;
+    MmsValue* vid;
+
     if (self->dstAddress == NULL) goto exit_error;
 
     if (MmsValue_getType(self->dstAddress) != MMS_STRUCTURE) {
@@ -201,7 +207,7 @@ ClientGooseControlBlock_getDstAddress(ClientGooseControlBlock self)
         goto exit_error;
     }
 
-    MmsValue* addr = MmsValue_getElement(self->dstAddress, 0);
+    addr = MmsValue_getElement(self->dstAddress, 0);
 
     if (MmsValue_getType(addr) != MMS_OCTET_STRING) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: GoCB - addr has wrong type\n");
@@ -213,11 +219,11 @@ ClientGooseControlBlock_getDstAddress(ClientGooseControlBlock self)
         goto exit_error;
     }
 
-    uint8_t* addrBuf = MmsValue_getOctetStringBuffer(addr);
+    addrBuf = MmsValue_getOctetStringBuffer(addr);
 
     memcpy(&(retVal.dstAddress), addrBuf, 6);
 
-    MmsValue* prio = MmsValue_getElement(self->dstAddress, 1);
+    prio = MmsValue_getElement(self->dstAddress, 1);
 
     if (MmsValue_getType(prio) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: GoCB - prio has wrong type\n");
@@ -226,7 +232,7 @@ ClientGooseControlBlock_getDstAddress(ClientGooseControlBlock self)
 
     retVal.vlanPriority = MmsValue_toUint32(prio);
 
-    MmsValue* vid = MmsValue_getElement(self->dstAddress, 2);
+    vid = MmsValue_getElement(self->dstAddress, 2);
 
     if (MmsValue_getType(vid) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: GoCB - vid has wrong type\n");
@@ -235,7 +241,7 @@ ClientGooseControlBlock_getDstAddress(ClientGooseControlBlock self)
 
     retVal.vlanId = MmsValue_toUint32(vid);
 
-    MmsValue* appID = MmsValue_getElement(self->dstAddress, 3);
+    appID = MmsValue_getElement(self->dstAddress, 3);
 
     if (MmsValue_getType(appID) != MMS_UNSIGNED) {
         if (DEBUG_IED_CLIENT) printf("IED_CLIENT: GoCB - appID has wrong type\n");

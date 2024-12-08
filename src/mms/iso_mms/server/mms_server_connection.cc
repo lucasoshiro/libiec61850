@@ -666,13 +666,14 @@ static inline void
 MmsServerConnection_parseMessage(MmsServerConnection self, ByteBuffer* message, ByteBuffer* response)
 {
     uint8_t* buffer = message->buffer;
+    uint8_t pduType;
+
+    int bufPos = 0;
 
     if (message->size < 2)
         goto parsing_error;
 
-    int bufPos = 0;
-
-    uint8_t pduType = buffer[bufPos++];
+    pduType = buffer[bufPos++];
     int pduLength;
 
     bufPos = BerDecoder_decodeLength(buffer, &pduLength, bufPos, message->size);

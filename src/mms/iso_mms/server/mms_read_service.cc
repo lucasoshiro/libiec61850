@@ -483,6 +483,7 @@ encodeReadResponse(MmsServerConnection connection,
     int i;
 
     int variableCount = LinkedList_size(values);
+	int bufPos = 0;
 
     uint32_t varAccessSpecSize = 0;
 
@@ -522,6 +523,8 @@ encodeReadResponse(MmsServerConnection connection,
     uint32_t mmsPduSize = 1 + BerEncoder_determineLengthSize(confirmedResponseContentSize) +
             confirmedResponseContentSize;
 
+	uint8_t* buffer;
+
     /* Check if message would fit in the MMS PDU */
     if (mmsPduSize > connection->maxPduSize) {
         if (DEBUG_MMS_SERVER)
@@ -535,8 +538,7 @@ encodeReadResponse(MmsServerConnection connection,
 
     /* encode message */
 
-    uint8_t* buffer = response->buffer;
-    int bufPos = 0;
+    buffer = response->buffer;
 
     /* confirmed response PDU */
     bufPos = BerEncoder_encodeTL(0xa1, confirmedResponseContentSize, buffer, bufPos);
@@ -599,6 +601,9 @@ handleReadListOfVariablesRequest(
 	}
 
 	int i;
+
+	bool sendResponse = true;
+	LinkedList valueElement;
 
 	for (i = 0; i < variableCount; i++) {
 		VariableSpecification_t varSpec =
@@ -674,9 +679,7 @@ handleReadListOfVariablesRequest(
 		}
 	}
 
-	bool sendResponse = true;
-
-	LinkedList valueElement = LinkedList_getNext(values);
+	valueElement = LinkedList_getNext(values);
 
 	while (valueElement) {
 

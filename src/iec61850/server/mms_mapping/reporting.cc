@@ -2695,6 +2695,9 @@ removeAllGIReportsFromReportBuffer(ReportBuffer* reportBuffer)
 static void
 enqueueReport(ReportControl* reportControl, bool isIntegrity, bool isGI, uint64_t timeOfEntry)
 {
+    ReportBufferEntry* entry;
+    uint8_t* entryBufPos = NULL;
+    uint8_t* entryStartPos;
     if (DEBUG_IED_SERVER)
         printf("IED_SERVER: enqueueReport: RCB name: %s (SQN:%u) enabled:%i buffered:%i buffering:%i intg:%i GI:%i\n",
             reportControl->name, (unsigned) reportControl->sqNum, reportControl->enabled,
@@ -2794,9 +2797,6 @@ enqueueReport(ReportControl* reportControl, bool isIntegrity, bool isGI, uint64_
         /* remove old buffered GI reports */
         if (isGI) removeAllGIReportsFromReportBuffer(buffer);
     }
-
-    uint8_t* entryBufPos = NULL;
-    uint8_t* entryStartPos;
 
     if (DEBUG_IED_SERVER)
         printf("IED_SERVER: number of reports in report buffer: %i\n", buffer->reportsCount);
@@ -2966,7 +2966,7 @@ enqueueReport(ReportControl* reportControl, bool isIntegrity, bool isGI, uint64_
     buffer->lastEnqueuedReport->next = NULL;
     buffer->reportsCount++;
 
-    ReportBufferEntry* entry = (ReportBufferEntry*) entryBufPos;
+    entry = (ReportBufferEntry*) entryBufPos;
 
     entry->timeOfEntry = timeOfEntry;
 
@@ -3124,6 +3124,10 @@ exit_function:
 static int
 sendNextReportEntrySegment(ReportControl* self)
 {
+    int bufPos = 0;
+    ByteBuffer* reportBuffer;
+    uint8_t* buffer;
+
     if (self->clientConnection == NULL)
         return SENT_REPORT_ENTRY_FAILED;
 
@@ -3468,10 +3472,9 @@ sendNextReportEntrySegment(ReportControl* self)
 
     IsoConnection_lock(self->clientConnection->isoConnection);
 
-    ByteBuffer* reportBuffer = MmsServer_reserveTransmitBuffer(self->server->mmsServer);
+    reportBuffer = MmsServer_reserveTransmitBuffer(self->server->mmsServer);
 
-    uint8_t* buffer = reportBuffer->buffer;
-    int bufPos = 0;
+    buffer = reportBuffer->buffer;
 
     /* encode header */
     bufPos = BerEncoder_encodeTL(0xa3, informationReportSize, buffer, bufPos);

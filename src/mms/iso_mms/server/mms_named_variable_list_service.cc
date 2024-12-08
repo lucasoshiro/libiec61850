@@ -122,6 +122,8 @@ mmsServer_handleDeleteNamedVariableListRequest(MmsServerConnection connection,
 
     DeleteNamedVariableListRequest_t* request = NULL;
     MmsPdu_t* mmsPdu = NULL;
+	MmsDevice* device;
+	long scopeOfDelete;
 
     asn_dec_rval_t rval = ber_decode(NULL, &asn_DEF_MmsPdu, (void**) &mmsPdu, buffer, maxBufPos);
 
@@ -141,12 +143,12 @@ mmsServer_handleDeleteNamedVariableListRequest(MmsServerConnection connection,
         goto exit_function;
     }
  
-	long scopeOfDelete = DeleteNamedVariableListRequest__scopeOfDelete_specific;
+	scopeOfDelete = DeleteNamedVariableListRequest__scopeOfDelete_specific;
 
 	if (request->scopeOfDelete)
 	    asn_INTEGER2long(request->scopeOfDelete, &scopeOfDelete);
 
-	MmsDevice* device = MmsServer_getDevice(connection->server);
+	device = MmsServer_getDevice(connection->server);
 
 	if (scopeOfDelete == DeleteNamedVariableListRequest__scopeOfDelete_specific) {
 	    MmsError serviceError = MMS_ERROR_NONE;
@@ -455,6 +457,7 @@ mmsServer_handleDefineNamedVariableListRequest(
 {
     (void)bufPos;
 
+    MmsDevice* device;
 	DefineNamedVariableListRequest_t* request = 0;
 
 	MmsPdu_t* mmsPdu = 0;
@@ -477,7 +480,7 @@ mmsServer_handleDefineNamedVariableListRequest(
 	    goto exit_free_struct;
     }
 
-    MmsDevice* device = MmsServer_getDevice(connection->server);
+    device = MmsServer_getDevice(connection->server);
 
     if (request->variableListName.present == ObjectName_PR_domainspecific) {
 

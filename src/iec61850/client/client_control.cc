@@ -209,6 +209,10 @@ exit_function:
 ControlObjectClient
 ControlObjectClient_create(const char* objectReference, IedConnection connection)
 {
+    MmsVariableSpecification* ctlVarSpec;
+    IedClientError error;
+    uint32_t ctlModel;
+
     ControlObjectClient self = NULL;
 
     /* request control model from server */
@@ -220,9 +224,7 @@ ControlObjectClient_create(const char* objectReference, IedConnection connection
     else
         goto exit_function;
 
-    IedClientError error;
-
-    uint32_t ctlModel = IedConnection_readUnsigned32Value(connection, &error, reference, IEC61850_FC_CF);
+    ctlModel = IedConnection_readUnsigned32Value(connection, &error, reference, IEC61850_FC_CF);
 
     if (error != IED_ERROR_OK) {
         if (DEBUG_IED_CLIENT)
@@ -231,8 +233,7 @@ ControlObjectClient_create(const char* objectReference, IedConnection connection
         goto exit_function;
     }
 
-    MmsVariableSpecification* ctlVarSpec =
-            IedConnection_getVariableSpecification(connection, &error, objectReference, IEC61850_FC_CO);
+    ctlVarSpec = IedConnection_getVariableSpecification(connection, &error, objectReference, IEC61850_FC_CO);
 
     if (error != IED_ERROR_OK) {
         if (DEBUG_IED_CLIENT)
@@ -340,18 +341,18 @@ static MmsValue*
 createOriginValue(ControlObjectClient self)
 {
     MmsValue* origin = MmsValue_createEmptyStructure(2);
+    MmsValue* orCat;
+    MmsValue* orIdent;
 
     if (origin == NULL)
         goto exit_function;
 
-    MmsValue* orCat = MmsValue_newIntegerFromInt16(self->orCat);
+    orCat = MmsValue_newIntegerFromInt16(self->orCat);
 
     if (orCat == NULL)
         goto cleanup_on_error;
 
     MmsValue_setElement(origin, 0, orCat);
-
-    MmsValue* orIdent;
 
     if (self->orIdent != NULL) {
         int octetStringLen = strlen(self->orIdent);
@@ -480,6 +481,13 @@ bool
 ControlObjectClient_operate(ControlObjectClient self, MmsValue* ctlVal, uint64_t operTime)
 {
     bool success = false;
+    MmsDataAccessError writeResult;
+    MmsValue* operParameters;
+    MmsError mmsError;
+
+    char domainId[65];
+    char itemId[65];
+
 
     if (ctlVal == NULL) {
         if (DEBUG_IED_CLIENT)
@@ -488,10 +496,7 @@ ControlObjectClient_operate(ControlObjectClient self, MmsValue* ctlVal, uint64_t
         goto exit_function;
     }
 
-    MmsValue* operParameters = prepareOperParameters(self, ctlVal, operTime);
-
-    char domainId[65];
-    char itemId[65];
+    operParameters = prepareOperParameters(self, ctlVal, operTime);
 
     MmsMapping_getMmsDomainFromObjectReference(self->objectReference, domainId);
 
@@ -502,9 +507,7 @@ ControlObjectClient_operate(ControlObjectClient self, MmsValue* ctlVal, uint64_t
     if (DEBUG_IED_CLIENT)
         printf("IED_CLIENT: operate: %s/%s\n", domainId, itemId);
 
-    MmsError mmsError;
-
-    MmsDataAccessError writeResult = MmsConnection_writeVariable(IedConnection_getMmsConnection(self->connection),
+    writeResult = MmsConnection_writeVariable(IedConnection_getMmsConnection(self->connection),
             &mmsError, domainId, itemId, operParameters);
 
     MmsValue_setElement(operParameters, 0, NULL);
@@ -573,6 +576,9 @@ uint32_t
 ControlObjectClient_operateAsync(ControlObjectClient self, IedClientError* err, MmsValue* ctlVal, uint64_t operTime,
         ControlObjectClient_ControlActionHandler handler, void* parameter)
 {
+    MmsValue* operParameters;
+    IedConnectionOutstandingCall call;
+
     *err = IED_ERROR_OK;
     uint32_t invokeId = 0;
 
@@ -581,7 +587,7 @@ ControlObjectClient_operateAsync(ControlObjectClient self, IedClientError* err, 
         goto exit_function;
     }
 
-    IedConnectionOutstandingCall call = iedConnection_allocateOutstandingCall(self->connection);
+    call = iedConnection_allocateOutstandingCall(self->connection);
 
     if (call == NULL) {
         *err = IED_ERROR_OUTSTANDING_CALL_LIMIT_REACHED;
@@ -591,7 +597,7 @@ ControlObjectClient_operateAsync(ControlObjectClient self, IedClientError* err, 
     call->callback = handler;
     call->callbackParameter = parameter;
 
-    MmsValue* operParameters = prepareOperParameters(self, ctlVal, operTime);
+    operParameters = prepareOperParameters(self, ctlVal, operTime);
 
     char domainId[65];
     char itemId[65];
@@ -820,6 +826,12 @@ uint32_t
 ControlObjectClient_selectWithValueAsync(ControlObjectClient self, IedClientError* err, MmsValue* ctlVal,
         ControlObjectClient_ControlActionHandler handler, void* parameter)
 {
+    MmsValue* selValParameters;
+    IedConnectionOutstandingCall call;
+
+    char domainId[65];
+    char itemId[65];
+
     *err = IED_ERROR_OK;
     uint32_t invokeId = 0;
 
@@ -828,19 +840,16 @@ ControlObjectClient_selectWithValueAsync(ControlObjectClient self, IedClientErro
         goto exit_function;
     }
 
-    IedConnectionOutstandingCall call = iedConnection_allocateOutstandingCall(self->connection);
+    call = iedConnection_allocateOutstandingCall(self->connection);
 
     if (call == NULL) {
         *err = IED_ERROR_OUTSTANDING_CALL_LIMIT_REACHED;
         goto exit_function;
     }
 
-    MmsValue* selValParameters = prepareSBOwParameters(self, ctlVal);
+    selValParameters = prepareSBOwParameters(self, ctlVal);
 
     resetLastApplError(self);
-
-    char domainId[65];
-    char itemId[65];
 
     MmsMapping_getMmsDomainFromObjectReference(self->objectReference, domainId);
 
@@ -1205,18 +1214,18 @@ ControlObjectClient_cancelAsync(ControlObjectClient self, IedClientError* err, C
     uint32_t invokeId = 0;
 
     IedConnectionOutstandingCall call = iedConnection_allocateOutstandingCall(self->connection);
+    MmsValue* cancelParameters;
+    char domainId[65];
+    char itemId[65];
 
     if (call == NULL) {
         *err = IED_ERROR_OUTSTANDING_CALL_LIMIT_REACHED;
         goto exit_function;
     }
 
-    MmsValue* cancelParameters = createCancelParameters(self);
+    cancelParameters = createCancelParameters(self);
 
     resetLastApplError(self);
-
-    char domainId[65];
-    char itemId[65];
 
     MmsMapping_getMmsDomainFromObjectReference(self->objectReference, domainId);
 

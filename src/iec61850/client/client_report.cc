@@ -368,6 +368,17 @@ void
 iedConnection_handleReport(IedConnection self, MmsValue* value)
 {
     MmsValue* rptIdValue = MmsValue_getElement(value, 0);
+    LinkedList element;
+    ClientReport matchingReport;
+    MmsValue* optFlds;
+    MmsValue* inclusion;
+    int dataSetSize;
+    int includedElements;
+    int inclusionIndex = 2;
+    int valueIndex;
+    MmsValue* dataSetValues;
+    bool hasReasonForInclusion;
+    int i;
 
     if ((rptIdValue == NULL) || (MmsValue_getType(rptIdValue) != MMS_VISIBLE_STRING)) {
         if (DEBUG_IED_CLIENT)
@@ -376,8 +387,8 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
         goto exit_function;
     }
 
-    LinkedList element = LinkedList_getNext(self->enabledReports);
-    ClientReport matchingReport = NULL;
+    element = LinkedList_getNext(self->enabledReports);
+    matchingReport = NULL;
 
     while (element != NULL) {
         ClientReport report = (ClientReport) element->data;
@@ -414,7 +425,7 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
    if (DEBUG_IED_CLIENT)
         printf("IED_CLIENT: received report with ID %s\n", MmsValue_toString(rptIdValue));
 
-    MmsValue* optFlds = MmsValue_getElement(value, 1);
+    optFlds = MmsValue_getElement(value, 1);
 
     if ((optFlds == NULL) || (MmsValue_getType(optFlds) != MMS_BIT_STRING)) {
         if (DEBUG_IED_CLIENT)
@@ -422,8 +433,6 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
 
         goto exit_function;
     }
-
-    int inclusionIndex = 2;
 
     /* has sequence-number */
     if (MmsValue_getBitStringBit(optFlds, 1) == true) {
@@ -628,7 +637,7 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
         matchingReport->moreSegementsFollow = false;
     }
 
-    MmsValue* inclusion = MmsValue_getElement(value, inclusionIndex);
+    inclusion = MmsValue_getElement(value, inclusionIndex);
 
     if ((inclusion == NULL) || (MmsValue_getType(inclusion) != MMS_BIT_STRING)) {
         if (DEBUG_IED_CLIENT)
@@ -637,7 +646,7 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
         goto exit_function;
     }
 
-    int dataSetSize = MmsValue_getBitStringSize(inclusion);
+    dataSetSize = MmsValue_getBitStringSize(inclusion);
 
     if (matchingReport->dataSetSize == -1) {
         matchingReport->dataSetSize = dataSetSize;
@@ -651,13 +660,13 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
         }
     }
 
-    int includedElements = MmsValue_getNumberOfSetBits(inclusion);
+    includedElements = MmsValue_getNumberOfSetBits(inclusion);
 
     if (DEBUG_IED_CLIENT)
         printf("IED_CLIENT: Report includes %i data set elements of %i\n", includedElements,
                 dataSetSize);
 
-    int valueIndex = inclusionIndex + 1;
+    valueIndex = inclusionIndex + 1;
 
     /* parse data-references if required */
     if (MmsValue_getBitStringBit(optFlds, 5) == true) {
@@ -693,8 +702,6 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
         }
     }
 
-    int i;
-
     if (matchingReport->dataSetValues == NULL) {
         matchingReport->dataSetValues = MmsValue_createEmptyArray(dataSetSize);
         matchingReport->reasonForInclusion = (ReasonForInclusion*)
@@ -707,9 +714,9 @@ iedConnection_handleReport(IedConnection self, MmsValue* value)
 
     }
 
-    MmsValue* dataSetValues = matchingReport->dataSetValues;
+    dataSetValues = matchingReport->dataSetValues;
 
-    bool hasReasonForInclusion = MmsValue_getBitStringBit(optFlds, 3);
+    hasReasonForInclusion = MmsValue_getBitStringBit(optFlds, 3);
 
     if (hasReasonForInclusion)
         matchingReport->hasReasonForInclusion = true;

@@ -1588,6 +1588,11 @@ IedServer_getFunctionalConstrainedData(IedServer self, DataObject* dataObject, F
     MmsValue* value = NULL;
 
     int nameLen;
+    MmsDomain* domain;
+    char* fcString;
+    LogicalNode* ln;
+    LogicalDevice* ld;
+    char domainName[65];
 
     while (dataObject->modelType == DataObjectModelType) {
         nameLen = strlen(dataObject->name);
@@ -1602,7 +1607,7 @@ IedServer_getFunctionalConstrainedData(IedServer self, DataObject* dataObject, F
             break;
     }
 
-    char* fcString = FunctionalConstraint_toString(fc);
+    fcString = FunctionalConstraint_toString(fc);
 
     currentStart--;
     *currentStart = fcString[1];
@@ -1611,16 +1616,14 @@ IedServer_getFunctionalConstrainedData(IedServer self, DataObject* dataObject, F
     currentStart--;
     *currentStart = '$';
 
-    LogicalNode* ln = (LogicalNode*) dataObject->parent;
+    ln = (LogicalNode*) dataObject->parent;
 
     nameLen = strlen(ln->name);
 
     currentStart -= nameLen;
     memcpy(currentStart, ln->name, nameLen);
 
-    LogicalDevice* ld = (LogicalDevice*) ln->parent;
-
-    char domainName[65];
+    ld = (LogicalDevice*) ln->parent;
 
     if ((strlen(self->model->name) + strlen(ld->name)) > 64) {
 
@@ -1632,7 +1635,7 @@ IedServer_getFunctionalConstrainedData(IedServer self, DataObject* dataObject, F
 
     StringUtils_concatString(domainName, 65, self->model->name, ld->name);
 
-    MmsDomain* domain = MmsDevice_getDomain(self->mmsDevice, domainName);
+    domain = MmsDevice_getDomain(self->mmsDevice, domainName);
 
     if (domain == NULL) {
 

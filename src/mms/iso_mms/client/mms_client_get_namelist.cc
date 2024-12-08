@@ -115,9 +115,11 @@ mmsClient_parseGetNameListResponse(LinkedList* nameList, ByteBuffer* message)
     bool moreFollows = true;
 
     uint8_t* buffer = message->buffer;
+	LinkedList element;
     int maxBufPos = message->size;
     int bufPos = 0;
     int length;
+	int listEndPos;
 
     uint8_t tag = buffer[bufPos++];
     if (tag == 0xa2) {
@@ -150,12 +152,12 @@ mmsClient_parseGetNameListResponse(LinkedList* nameList, ByteBuffer* message)
     bufPos = BerDecoder_decodeLength(buffer, &length, bufPos, maxBufPos);
     if (bufPos < 0) goto exit_error;
 
-    int listEndPos = bufPos + length;
+    listEndPos = bufPos + length;
 
     if (*nameList == NULL)
         *nameList = LinkedList_create();
 
-    LinkedList element = LinkedList_getLastElement(*nameList);
+    element = LinkedList_getLastElement(*nameList);
 
     while (bufPos < listEndPos) {
         tag = buffer[bufPos++];

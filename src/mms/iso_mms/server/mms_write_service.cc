@@ -619,6 +619,8 @@ mmsServer_handleWriteRequest(
 
             MmsValue* value = mmsMsg_parseDataElement(dataElement);
 
+            MmsDataAccessError valueIndication;
+
             if (value == NULL) {
                 accessResults[i] = DATA_ACCESS_ERROR_OBJECT_ATTRIBUTE_INCONSISTENT;
                 continue;
@@ -690,8 +692,7 @@ mmsServer_handleWriteRequest(
                 goto end_of_main_loop;
             }
 
-            MmsDataAccessError valueIndication =
-                    mmsServer_setValue(connection->server, domain, nameIdStr, value, connection);
+            valueIndication =  mmsServer_setValue(connection->server, domain, nameIdStr, value, connection);
 
             if (valueIndication == DATA_ACCESS_ERROR_NO_RESPONSE)
                 sendResponse = false;

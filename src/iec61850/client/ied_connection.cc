@@ -3014,6 +3014,10 @@ IedConnection_createDataSet(IedConnection self, IedClientError* error, const cha
     const char* itemId;
     bool isAssociationSpecific = false;
 
+    MmsError mmsError;
+    LinkedList dataSetEntries;
+    LinkedList dataSetElement;
+
     if (dataSetReference[0] != '@') {
 
         if ((dataSetReference[0] == '/') || (strchr(dataSetReference, '/') == NULL)) {
@@ -3049,11 +3053,9 @@ IedConnection_createDataSet(IedConnection self, IedClientError* error, const cha
         isAssociationSpecific = true;
     }
 
-    MmsError mmsError;
+    dataSetEntries = LinkedList_create();
 
-    LinkedList dataSetEntries = LinkedList_create();
-
-    LinkedList dataSetElement = LinkedList_getNext(dataSetElements);
+    dataSetElement = LinkedList_getNext(dataSetElements);
 
     while (dataSetElement != NULL) {
 
@@ -3096,6 +3098,8 @@ IedConnection_deleteDataSet(IedConnection self, IedClientError* error, const cha
     bool isAssociationSpecific = false;
     bool isDeleted = false;
 
+    MmsError mmsError;
+
     int dataSetReferenceLength = (int)strlen(dataSetReference);
 
     if (dataSetReference[0] != '@') {
@@ -3137,7 +3141,7 @@ IedConnection_deleteDataSet(IedConnection self, IedClientError* error, const cha
         isAssociationSpecific = true;
     }
 
-    MmsError mmsError;
+
 
     if (isAssociationSpecific)
         isDeleted = MmsConnection_deleteAssociationSpecificNamedVariableList(self->connection, &mmsError, itemId);
@@ -3301,6 +3305,16 @@ IedConnection_createDataSetAsync(IedConnection self, IedClientError* error, cons
 
     IedConnectionOutstandingCall call = iedConnection_allocateOutstandingCall(self);
 
+    char domainIdBuffer[65];
+    char itemIdBuffer[DATA_SET_MAX_NAME_LENGTH + 1];
+
+    const char* domainId;
+    const char* itemId;
+    bool isAssociationSpecific = false;
+
+    LinkedList dataSetEntries;
+    LinkedList dataSetElement;
+
     if (call == NULL) {
         *error = IED_ERROR_OUTSTANDING_CALL_LIMIT_REACHED;
        goto exit_function;
@@ -3310,12 +3324,6 @@ IedConnection_createDataSetAsync(IedConnection self, IedClientError* error, cons
     call->callbackParameter = parameter;
     call->invokeId = 0;
 
-    char domainIdBuffer[65];
-    char itemIdBuffer[DATA_SET_MAX_NAME_LENGTH + 1];
-
-    const char* domainId;
-    const char* itemId;
-    bool isAssociationSpecific = false;
 
     if (dataSetReference[0] != '@') {
 
@@ -3352,9 +3360,9 @@ IedConnection_createDataSetAsync(IedConnection self, IedClientError* error, cons
         isAssociationSpecific = true;
     }
 
-    LinkedList dataSetEntries = LinkedList_create();
+    dataSetEntries = LinkedList_create();
 
-    LinkedList dataSetElement = LinkedList_getNext(dataSetElements);
+    dataSetElement = LinkedList_getNext(dataSetElements);
 
     while (dataSetElement != NULL) {
 

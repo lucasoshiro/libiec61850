@@ -59,15 +59,6 @@ mmsClient_parseIdentifyResponse(MmsConnection self, ByteBuffer* response, uint32
     int length;
     int bufPos = (int) respBufPos;
 
-    uint8_t tag = buffer[bufPos++];
-    if (tag != 0xa2)
-        goto exit_error;
-
-    bufPos = BerDecoder_decodeLength(buffer, &length, bufPos, maxBufPos);
-    if (bufPos < 0) goto exit_error;
-
-    int endPos = bufPos + length;
-
     char vendorNameBuf[100];
     char modelNameBuf[100];
     char revisionBuf[100];
@@ -75,6 +66,17 @@ mmsClient_parseIdentifyResponse(MmsConnection self, ByteBuffer* response, uint32
     char* vendorName = NULL;
     char* modelName = NULL;
     char* revision = NULL;
+
+    int endPos;
+
+    uint8_t tag = buffer[bufPos++];
+    if (tag != 0xa2)
+        goto exit_error;
+
+    bufPos = BerDecoder_decodeLength(buffer, &length, bufPos, maxBufPos);
+    if (bufPos < 0) goto exit_error;
+
+    endPos = bufPos + length;
 
     while (bufPos < endPos) {
         tag = buffer[bufPos++];

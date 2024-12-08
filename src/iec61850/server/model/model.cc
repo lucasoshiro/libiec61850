@@ -423,6 +423,8 @@ LogicalNode_getDataSet(LogicalNode* self, const char* dataSetName)
 	assert(dataSetName != NULL);
 
 	char dsName[66];
+    IedModel* iedModel;
+    DataSet* ds;
 
 	LogicalDevice* ld = (LogicalDevice*) self->parent;
 
@@ -437,9 +439,9 @@ LogicalNode_getDataSet(LogicalNode* self, const char* dataSetName)
 
 	StringUtils_createStringInBuffer(dsName, 66, 3, self->name, "$", dataSetName);
 
-	IedModel* iedModel = (IedModel*) ld->parent;
+	iedModel = (IedModel*) ld->parent;
 
-	DataSet* ds = iedModel->dataSets;
+	ds = iedModel->dataSets;
 
 	while (ds != NULL) {
 		if (strcmp(ds->logicalDeviceName, ld->name) == 0) {

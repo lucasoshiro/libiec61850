@@ -938,6 +938,8 @@ ControlObject*
 ControlObject_create(IedServer iedServer, MmsDomain* domain, char* lnName, char* name, MmsVariableSpecification* operSpec)
 {
     ControlObject* self = (ControlObject*) GLOBAL_CALLOC(1, sizeof(ControlObject));
+    MmsVariableSpecification* originSpec;
+    MmsVariableSpecification* ctlValSpec;
 
     if (self == NULL)
         goto exit_function;
@@ -968,7 +970,7 @@ ControlObject_create(IedServer iedServer, MmsDomain* domain, char* lnName, char*
     self->mmsDomain = domain;
     self->iedServer = iedServer;
 
-    MmsVariableSpecification* ctlValSpec = MmsVariableSpecification_getChildSpecificationByName(operSpec, "ctlVal", NULL);
+    ctlValSpec = MmsVariableSpecification_getChildSpecificationByName(operSpec, "ctlVal", NULL);
 
     if (ctlValSpec) {
         self->ctlVal = MmsValue_newDefaultValue(ctlValSpec);
@@ -978,7 +980,7 @@ ControlObject_create(IedServer iedServer, MmsDomain* domain, char* lnName, char*
             printf("IED_SERVER: control object %s/%s.%s has no ctlVal element!\n", domain->domainName, lnName, name);
     }
 
-    MmsVariableSpecification* originSpec = MmsVariableSpecification_getChildSpecificationByName(operSpec, "origin", NULL);
+    originSpec = MmsVariableSpecification_getChildSpecificationByName(operSpec, "origin", NULL);
 
     if (originSpec) {
         self->origin = MmsValue_newDefaultValue(originSpec);
@@ -1933,33 +1935,37 @@ Control_writeAccessControlObject(MmsMapping* self, MmsDomain* domain, char* vari
     IEC61850_ServiceError serviceError = IEC61850_SERVICE_ERROR_NO_ERROR;
     ControlObject* controlObject = NULL;
 
+    char variableId[65];
+    IEC61850_ServiceType serviceType;
+    char* separator;
+    char* lnName;
+    char* objectName;
+    char* varName;
+
     if (DEBUG_IED_SERVER)
         printf("IED_SERVER: writeAccessControlObject: %s\n", variableIdOrig);
 
-    IEC61850_ServiceType serviceType = IEC61850_SERVICE_TYPE_UNKOWN;
-
-    char variableId[65];
-
+    serviceType = IEC61850_SERVICE_TYPE_UNKOWN;
     StringUtils_copyStringMax(variableId, 65, variableIdOrig);
 
-    char* separator = strchr(variableId, '$');
+    separator = strchr(variableId, '$');
 
     if (separator == NULL)
         goto free_and_return;
 
     *separator = 0;
 
-    char* lnName = variableId;
+    lnName = variableId;
 
     if (lnName == NULL)
         goto free_and_return;
 
-    char* objectName = MmsMapping_getNextNameElement(separator + 1);
+    objectName = MmsMapping_getNextNameElement(separator + 1);
 
     if (objectName == NULL)
         goto free_and_return;
 
-    char* varName =  MmsMapping_getNextNameElement(objectName);
+    varName =  MmsMapping_getNextNameElement(objectName);
 
     if (varName != NULL) {
 
