@@ -78,14 +78,15 @@ int main(int argc, char** argv) {
         /* read data set */
         ClientDataSet clientDataSet = IedConnection_readDataSetValues(con, &error, "simpleIOGenericIO/LLN0.Events", NULL);
 
+        ClientReportControlBlock rcb;
+
         if (clientDataSet == NULL) {
             printf("failed to read dataset\n");
             goto close_connection;
         }
 
         /* Read RCB values */
-        ClientReportControlBlock rcb =
-                IedConnection_getRCBValues(con, &error, "simpleIOGenericIO/LLN0.RP.EventsRCB01", NULL);
+        rcb = IedConnection_getRCBValues(con, &error, "simpleIOGenericIO/LLN0.RP.EventsRCB01", NULL);
 
         if (rcb) {
             bool rptEna = ClientReportControlBlock_getRptEna(rcb);
