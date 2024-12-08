@@ -1,6 +1,6 @@
 
 set(mms_utility_SRCS
-   mms_utility.c
+   mms_utility.cc
 )
 
 IF(MSVC)

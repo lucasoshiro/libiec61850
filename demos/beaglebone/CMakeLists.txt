@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(beagle_demo_SRCS
-   beagle_demo.c
-   static_model.c
+   beagle_demo.cc
+   static_model.cc
 )
 
 IF(WIN32)

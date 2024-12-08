@@ -1,6 +1,6 @@
 
 set(example_SRCS
-   tls_client_example.c
+   tls_client_example.cc
 )
 
 IF(MSVC)

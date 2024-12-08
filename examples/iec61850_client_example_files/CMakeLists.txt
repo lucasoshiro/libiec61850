@@ -1,6 +1,6 @@
 
 set(iec61850_client_example_files_SRCS
-   file-tool.c
+   file-tool.cc
 )
 
 IF(MSVC)

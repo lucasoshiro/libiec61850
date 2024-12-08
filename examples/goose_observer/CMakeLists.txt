@@ -1,6 +1,6 @@
 
 set(goose_observer_SRCS
-   goose_observer.c
+   goose_observer.cc
 )
 
 IF(MSVC)

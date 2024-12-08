@@ -8,13 +8,13 @@ include_directories(
 )
 
 set(server_example_SRCS
-   server_example_logging.c
-   static_model.c
-   ${CMAKE_CURRENT_LIST_DIR}/../../src/logging/drivers/sqlite/log_storage_sqlite.c
+   server_example_logging.cc
+   static_model.cc
+   ${CMAKE_CURRENT_LIST_DIR}/../../src/logging/drivers/sqlite/log_storage_sqlite.cc
 )
 
 set(sqlite_SRCS
-   ${CMAKE_CURRENT_LIST_DIR}/../../third_party/sqlite/sqlite3.c
+   ${CMAKE_CURRENT_LIST_DIR}/../../third_party/sqlite/sqlite3.cc
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION")

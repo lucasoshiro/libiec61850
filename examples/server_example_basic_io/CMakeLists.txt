@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(server_example_SRCS
-   server_example_basic_io.c
-   static_model.c
+   server_example_basic_io.cc
+   static_model.cc
 )
 
 IF(MSVC)

@@ -3,7 +3,7 @@ include_directories(
 )
 
 set(server_example_config_file_SRCS
-   server_example_config_file.c
+   server_example_config_file.cc
 )
 
 IF(MSVC)

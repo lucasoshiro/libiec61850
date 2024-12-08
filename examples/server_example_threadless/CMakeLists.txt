@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(server_example_threadless_SRCS
-   server_example_threadless.c
-   static_model.c
+   server_example_threadless.cc
+   static_model.cc
 )
 
 IF(MSVC)

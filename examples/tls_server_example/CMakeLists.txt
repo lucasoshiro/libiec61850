@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(example_SRCS
-   tls_server_example.c
-   static_model.c
+   tls_server_example.cc
+   static_model.cc
 )
 
 IF(MSVC)

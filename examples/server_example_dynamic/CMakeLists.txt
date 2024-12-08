@@ -3,7 +3,7 @@ include_directories(
 )
 
 set(server_example_dynamic_SRCS
-   server_example_dynamic.c
+   server_example_dynamic.cc
 )
 
 IF(MSVC)

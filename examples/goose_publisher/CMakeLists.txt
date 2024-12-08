@@ -1,6 +1,6 @@
 
 set(goose_publisher_example_SRCS
-   goose_publisher_example.c
+   goose_publisher_example.cc
 )
 
 IF(MSVC)

@@ -1,6 +1,6 @@
 
 set(sv_publisher_example_SRCS
-   sv_publisher_example.c
+   sv_publisher_example.cc
 )
 
 IF(MSVC)

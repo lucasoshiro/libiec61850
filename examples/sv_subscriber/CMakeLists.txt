@@ -1,6 +1,6 @@
 
 set(sv_subscriber_example_SRCS
-   sv_subscriber_example.c
+   sv_subscriber_example.cc
 )
 
 IF(MSVC)

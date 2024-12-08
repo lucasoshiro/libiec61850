@@ -1,6 +1,6 @@
 
 set(iec61850_client_async_SRCS
-   client_example_async.c
+   client_example_async.cc
 )
 
 IF(MSVC)

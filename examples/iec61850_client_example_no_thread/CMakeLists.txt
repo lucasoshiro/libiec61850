@@ -1,6 +1,6 @@
 
 set(iec61850_client_no_thread_SRCS
-   client_example_no_thread.c
+   client_example_no_thread.cc
 )
 
 IF(MSVC)

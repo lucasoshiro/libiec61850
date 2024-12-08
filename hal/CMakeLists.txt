@@ -38,46 +38,46 @@ include_directories(
 )
 
 set (libhal_linux_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/linux/socket_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/linux/ethernet_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/thread/linux/thread_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
- ${CMAKE_CURRENT_LIST_DIR}/serial/linux/serial_port_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
+ ${CMAKE_CURRENT_LIST_DIR}/socket/linux/socket_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/ethernet/linux/ethernet_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/thread/linux/thread_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.cc
+ ${CMAKE_CURRENT_LIST_DIR}/serial/linux/serial_port_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.cc
 )
 
 set (libhal_windows_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/win32/socket_win32.c
- ${CMAKE_CURRENT_LIST_DIR}/thread/win32/thread_win32.c
- ${CMAKE_CURRENT_LIST_DIR}/filesystem/win32/file_provider_win32.c
- ${CMAKE_CURRENT_LIST_DIR}/time/win32/time.c
- ${CMAKE_CURRENT_LIST_DIR}/serial/win32/serial_port_win32.c
- ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
+ ${CMAKE_CURRENT_LIST_DIR}/socket/win32/socket_win32.cc
+ ${CMAKE_CURRENT_LIST_DIR}/thread/win32/thread_win32.cc
+ ${CMAKE_CURRENT_LIST_DIR}/filesystem/win32/file_provider_win32.cc
+ ${CMAKE_CURRENT_LIST_DIR}/time/win32/time.cc
+ ${CMAKE_CURRENT_LIST_DIR}/serial/win32/serial_port_win32.cc
+ ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.cc
 )
 
 if(WITH_WPCAP)
 set (libhal_windows_SRCS ${libhal_windows_SRCS}
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/win32/ethernet_win32.c
+ ${CMAKE_CURRENT_LIST_DIR}/ethernet/win32/ethernet_win32.cc
 )
 endif(WITH_WPCAP)
 
 set (libhal_bsd_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/thread/bsd/thread_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
- ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
+ ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.cc
+ ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.cc
+ ${CMAKE_CURRENT_LIST_DIR}/thread/bsd/thread_bsd.cc
+ ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.cc
+ ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.cc
 )
 
 set (libhal_macos_SRCS
- ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.c
- ${CMAKE_CURRENT_LIST_DIR}/thread/macos/thread_macos.c
- ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.c
- ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.c
- ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.c
+ ${CMAKE_CURRENT_LIST_DIR}/socket/bsd/socket_bsd.cc
+ ${CMAKE_CURRENT_LIST_DIR}/ethernet/bsd/ethernet_bsd.cc
+ ${CMAKE_CURRENT_LIST_DIR}/thread/macos/thread_macos.cc
+ ${CMAKE_CURRENT_LIST_DIR}/filesystem/linux/file_provider_linux.cc
+ ${CMAKE_CURRENT_LIST_DIR}/time/unix/time.cc
+ ${CMAKE_CURRENT_LIST_DIR}/memory/lib_memory.cc
 )
 
 IF(WIN32)
@@ -135,7 +135,7 @@ endif(CONFIG_USE_EXTERNAL_MBEDTLS_DYNLIB)
 add_definitions(-DMBEDTLS_CONFIG_FILE="mbedtls_config.h")
 
 set (libhal_SRCS ${libhal_SRCS}
-  ${CMAKE_CURRENT_LIST_DIR}/tls/mbedtls/tls_mbedtls.c
+  ${CMAKE_CURRENT_LIST_DIR}/tls/mbedtls/tls_mbedtls.cc
 )
 
 IF(MSVC)

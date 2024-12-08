@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(server_example_SRCS
-   server_example_password_auth.c
-   static_model.c
+   server_example_password_auth.cc
+   static_model.cc
 )
 
 IF(MSVC)

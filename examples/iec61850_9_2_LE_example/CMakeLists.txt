@@ -3,8 +3,8 @@ include_directories(
 )
 
 set(sv_9_2_LE_example_SRCS
-   iec61850_9_2_LE_example.c
-   static_model.c
+   iec61850_9_2_LE_example.cc
+   static_model.cc
 )
 
 IF(MSVC)

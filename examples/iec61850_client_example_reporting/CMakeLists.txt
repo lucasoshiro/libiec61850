@@ -1,6 +1,6 @@
 
 set(iec61850_client_example_reporting_SRCS
-   client_example_reporting.c
+   client_example_reporting.cc
 )
 
 IF(MSVC)
