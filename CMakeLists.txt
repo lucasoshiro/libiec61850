@@ -143,6 +143,8 @@ endif(WITH_MBEDTLS)
 
 include(CheckCCompilerFlag)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -Wno-write-strings")
+
 check_c_compiler_flag("-Wredundant-decls" SUPPORT_REDUNDANT_DECLS)
 if (SUPPORT_REDUNDANT_DECLS)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wredundant-decls")
