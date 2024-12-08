@@ -22,7 +22,9 @@
 #include <netinet/tcp.h> /* required for TCP keepalive */
 #include <linux/version.h>
 
+#ifndef __cplusplus
 #define _GNU_SOURCE
+#endif
 #include <signal.h>
 #include <poll.h>
 
@@ -33,6 +35,10 @@
 
 #ifndef DEBUG_SOCKET
 #define DEBUG_SOCKET 0
+#endif
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 struct sSocket {
@@ -114,7 +120,7 @@ Handleset_waitReady(HandleSet self, unsigned int timeoutMs)
 
         self->nfds = LinkedList_size(self->sockets);
 
-        self->fds = GLOBAL_CALLOC(self->nfds, sizeof(struct pollfd));
+        self->fds = static_cast<struct pollfd*>(GLOBAL_CALLOC(self->nfds, sizeof(struct pollfd)));
 
         int i;
 
@@ -853,3 +859,7 @@ UdpSocket_receiveFrom(UdpSocket self, char* address, int maxAddrSize, uint8_t* m
 
     return result;
 }
+
+#ifdef __cplusplus
+}
+#endif

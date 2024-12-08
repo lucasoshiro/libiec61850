@@ -41,6 +41,10 @@
 #define DEBUG_SOCKET 0
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct sEthernetSocket {
     int rawSocket;
     bool isBind;
@@ -72,7 +76,7 @@ EthernetHandleSet_addSocket(EthernetHandleSet self, const EthernetSocket sock)
 
         int i = self->nhandles++;
 
-        self->handles = realloc(self->handles, self->nhandles * sizeof(struct pollfd));
+        self->handles = static_cast<struct pollfd*>(realloc(self->handles, self->nhandles * sizeof(struct pollfd)));
 
         self->handles[i].fd = sock->rawSocket;
         self->handles[i].events = POLLIN;
@@ -166,7 +170,7 @@ Ethernet_getInterfaceMACAddress(const char* interfaceId, uint8_t* addr)
 EthernetSocket
 Ethernet_createSocket(const char* interfaceId, uint8_t* destAddress)
 {
-    EthernetSocket ethernetSocket = GLOBAL_CALLOC(1, sizeof(struct sEthernetSocket));
+    EthernetSocket ethernetSocket = static_cast<EthernetSocket>(GLOBAL_CALLOC(1, sizeof(struct sEthernetSocket)));
 
     if (ethernetSocket) {
         ethernetSocket->rawSocket = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
@@ -346,3 +350,6 @@ Ethernet_isSupported()
     return true;
 }
 
+#ifdef __cplusplus
+}
+#endif
