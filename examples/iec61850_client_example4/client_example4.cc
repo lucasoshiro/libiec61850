@@ -58,10 +58,10 @@ int main(int argc, char** argv) {
         /* Create a new data set at the remote server */
         LinkedList newDataSetEntries = LinkedList_create();
 
-        LinkedList_add(newDataSetEntries, "simpleIOGenericIO/GGIO1.AnIn1[MX]");
-        LinkedList_add(newDataSetEntries, "simpleIOGenericIO/GGIO1.AnIn2[MX]");
-        LinkedList_add(newDataSetEntries, "simpleIOGenericIO/GGIO1.AnIn3[MX]");
-        LinkedList_add(newDataSetEntries, "simpleIOGenericIO/GGIO1.AnIn4[MX]");
+        LinkedList_add(newDataSetEntries, (void *) "simpleIOGenericIO/GGIO1.AnIn1[MX]");
+        LinkedList_add(newDataSetEntries, (void *) "simpleIOGenericIO/GGIO1.AnIn2[MX]");
+        LinkedList_add(newDataSetEntries, (void *) "simpleIOGenericIO/GGIO1.AnIn3[MX]");
+        LinkedList_add(newDataSetEntries, (void *) "simpleIOGenericIO/GGIO1.AnIn4[MX]");
 
         IedConnection_createDataSet(con, &error, "simpleIOGenericIO/LLN0.AnalogueValues", newDataSetEntries);
 

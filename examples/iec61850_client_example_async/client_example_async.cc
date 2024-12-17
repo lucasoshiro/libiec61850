@@ -233,19 +233,19 @@ int main(int argc, char** argv) {
             Thread_sleep(1000);
 
 
-            IedConnection_readObjectAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn1.mag.f", IEC61850_FC_MX, readObjectHandler, "simpleIOGenericIO/GGIO1.AnIn1.mag.f");
+            IedConnection_readObjectAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn1.mag.f", IEC61850_FC_MX, readObjectHandler, (void *) "simpleIOGenericIO/GGIO1.AnIn1.mag.f");
 
             if (error != IED_ERROR_OK) {
                 printf("read object error %i\n", error);
             }
 
-            IedConnection_readObjectAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn2.mag.f", IEC61850_FC_MX, readObjectHandler, "simpleIOGenericIO/GGIO1.AnIn2.mag.f");
+            IedConnection_readObjectAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn2.mag.f", IEC61850_FC_MX, readObjectHandler, (void *) "simpleIOGenericIO/GGIO1.AnIn2.mag.f");
 
             if (error != IED_ERROR_OK) {
                 printf("read object error %i\n", error);
             }
 
-            IedConnection_getVariableSpecificationAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn1", IEC61850_FC_MX, getVarSpecHandler, "simpleIOGenericIO/GGIO1.AnIn1");
+            IedConnection_getVariableSpecificationAsync(con, &error, "simpleIOGenericIO/GGIO1.AnIn1", IEC61850_FC_MX, getVarSpecHandler, (void *) "simpleIOGenericIO/GGIO1.AnIn1");
 
             if (error != IED_ERROR_OK) {
                 printf("get variable specification error %i\n", error);
