@@ -2038,7 +2038,7 @@ MmsMapping_create(IedModel* model, IedServer iedServer)
     /* create data model specification */
     self->mmsDevice = createMmsModelFromIedModel(self, model);
 
-    if (self->mmsDevice == false) {
+    if (self->mmsDevice == nullptr) {
     	MmsMapping_destroy(self);
     	self = NULL;
     }

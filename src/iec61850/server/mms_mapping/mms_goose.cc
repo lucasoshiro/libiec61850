@@ -640,7 +640,7 @@ MmsGooseControlBlock_setStateChangePending(MmsGooseControlBlock self)
 void
 MmsGooseControlBlock_publishNewState(MmsGooseControlBlock self)
 {
-    if (self->publisher == false)
+    if (self->publisher == nullptr)
         return;
 
     if (self->stateChangePending) {
