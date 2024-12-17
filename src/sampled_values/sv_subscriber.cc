@@ -360,7 +360,7 @@ parseASDU(SVReceiver self, SVSubscriber subscriber, uint8_t* buffer, int length)
 
         if (SVSubscriber_ASDU_hasRefrTm(&asdu))
 #ifndef _MSC_VER
-            printf("SV_SUBSCRIBER:     RefrTm[ns]: %"PRIu64"\n", SVSubscriber_ASDU_getRefrTmAsNs(&asdu));
+            printf("SV_SUBSCRIBER:     RefrTm[ns]: %" PRIu64 "\n", SVSubscriber_ASDU_getRefrTmAsNs(&asdu));
 #else
             printf("SV_SUBSCRIBER:     RefrTm[ns]: %llu\n", SVSubscriber_ASDU_getRefrTmAsNs(&asdu));
 #endif
