@@ -11,7 +11,7 @@
 
 static asn_TYPE_member_t asn_MBR_DataSequence_1[] = {
 	{ ATF_POINTER, 0, 0,
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_Data,
 		0,	/* Defer constraints checking to the member type */

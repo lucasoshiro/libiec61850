@@ -11,7 +11,7 @@
 
 static asn_TYPE_member_t asn_MBR_listOfAccessResult_3[] = {
 	{ ATF_POINTER, 0, 0,
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_AccessResult,
 		0,	/* Defer constraints checking to the member type */
@@ -56,7 +56,7 @@ asn_TYPE_descriptor_t asn_DEF_listOfAccessResult_3 = {
 
 static asn_TYPE_member_t asn_MBR_InformationReport_1[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct InformationReport, variableAccessSpecification),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_VariableAccessSpecification,
 		0,	/* Defer constraints checking to the member type */

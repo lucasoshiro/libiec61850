@@ -11,7 +11,7 @@
 
 static asn_TYPE_member_t asn_MBR_listOfData_3[] = {
 	{ ATF_POINTER, 0, 0,
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_Data,
 		0,	/* Defer constraints checking to the member type */
@@ -56,7 +56,7 @@ asn_TYPE_descriptor_t asn_DEF_listOfData_3 = {
 
 static asn_TYPE_member_t asn_MBR_WriteRequest_1[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct WriteRequest, variableAccessSpecification),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_VariableAccessSpecification,
 		0,	/* Defer constraints checking to the member type */

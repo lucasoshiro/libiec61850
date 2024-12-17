@@ -20,7 +20,7 @@ static asn_TYPE_member_t asn_MBR_named_4[] = {
 		"componentName"
 		},
 	{ ATF_POINTER, 0, offsetof(struct AlternateAccess__Member::AlternateAccess__Member_u::named, access),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_AlternateAccessSelection,
 		0,	/* Defer constraints checking to the member type */
@@ -77,7 +77,7 @@ asn_TYPE_descriptor_t asn_DEF_named_4 = {
 
 static asn_TYPE_member_t asn_MBR_Member_2[] = {
 	{ ATF_POINTER, 0, offsetof(struct AlternateAccess__Member, choice.unnamed),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_AlternateAccessSelection,
 		0,	/* Defer constraints checking to the member type */
@@ -138,7 +138,7 @@ asn_TYPE_descriptor_t asn_DEF_Member_2 = {
 
 static asn_TYPE_member_t asn_MBR_AlternateAccess_1[] = {
 	{ ATF_POINTER, 0, 0,
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_Member_2,
 		0,	/* Defer constraints checking to the member type */

@@ -11,7 +11,7 @@
 
 static asn_TYPE_member_t asn_MBR_Member_4[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct DefineNamedVariableListRequest__listOfVariable__Member, variableSpecification),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_VariableSpecification,
 		0,	/* Defer constraints checking to the member type */
@@ -121,7 +121,7 @@ asn_TYPE_descriptor_t asn_DEF_listOfVariable_3 = {
 
 static asn_TYPE_member_t asn_MBR_DefineNamedVariableListRequest_1[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct DefineNamedVariableListRequest, variableListName),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_ObjectName,
 		0,	/* Defer constraints checking to the member type */

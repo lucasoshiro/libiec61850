@@ -31,7 +31,7 @@ static int asn_DFL_2_set_0(int set_value, void **sptr) {
 }
 static asn_TYPE_member_t asn_MBR_listOfVariableListName_7[] = {
 	{ ATF_POINTER, 0, 0,
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_ObjectName,
 		0,	/* Defer constraints checking to the member type */

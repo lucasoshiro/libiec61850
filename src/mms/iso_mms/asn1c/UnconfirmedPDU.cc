@@ -11,7 +11,7 @@
 
 static asn_TYPE_member_t asn_MBR_UnconfirmedPDU_1[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct UnconfirmedPDU, unconfirmedService),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_UnconfirmedService,
 		0,	/* Defer constraints checking to the member type */

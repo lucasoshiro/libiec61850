@@ -150,7 +150,7 @@ asn_TYPE_descriptor_t asn_DEF_accessSelection_3 = {
 
 static asn_TYPE_member_t asn_MBR_selectAlternateAccess_2[] = {
 	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection::AlternateAccessSelection_u::AlternateAccessSelection__selectAlternateAccess, accessSelection),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_accessSelection_3,
 		0,	/* Defer constraints checking to the member type */
@@ -363,7 +363,7 @@ static asn_TYPE_member_t asn_MBR_AlternateAccessSelection_1[] = {
 		"selectAlternateAccess"
 		},
 	{ ATF_NOFLAGS, 0, offsetof(struct AlternateAccessSelection, choice.selectAccess),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_selectAccess_11,
 		0,	/* Defer constraints checking to the member type */

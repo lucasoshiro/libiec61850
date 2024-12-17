@@ -20,7 +20,7 @@ static asn_TYPE_member_t asn_MBR_ConfirmedRequestPdu_1[] = {
 		"invokeID"
 		},
 	{ ATF_NOFLAGS, 0, offsetof(struct ConfirmedRequestPdu, confirmedServiceRequest),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		static_cast<ber_tlv_tag_t>(-1) /* Ambiguous tag (CHOICE?) */,
 		0,
 		&asn_DEF_ConfirmedServiceRequest,
 		0,	/* Defer constraints checking to the member type */
