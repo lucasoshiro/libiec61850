@@ -594,7 +594,7 @@ ControlObjectClient_operateAsync(ControlObjectClient self, IedClientError* err, 
         goto exit_function;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     operParameters = prepareOperParameters(self, ctlVal, operTime);
@@ -857,7 +857,7 @@ ControlObjectClient_selectWithValueAsync(ControlObjectClient self, IedClientErro
 
     StringUtils_appendString(itemId, 65, "$SBOw");
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError mmsError;
@@ -1042,7 +1042,7 @@ ControlObjectClient_selectAsync(ControlObjectClient self, IedClientError* err, C
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError mmsError;
@@ -1233,7 +1233,7 @@ ControlObjectClient_cancelAsync(ControlObjectClient self, IedClientError* err, C
 
     StringUtils_appendString(itemId, 65, "$Cancel");
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError mmsError;

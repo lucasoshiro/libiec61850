@@ -961,7 +961,7 @@ IedConnection_getVariableSpecificationAsync(IedConnection self, IedClientError* 
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsConnection_getVariableAccessAttributesAsync(self->connection, &(call->invokeId), &err, domainId, itemId, getAccessAttrHandler, self);
@@ -1008,7 +1008,7 @@ IedConnection_getServerDirectoryAsync(IedConnection self, IedClientError* error,
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError err = MMS_ERROR_NONE;
@@ -1040,7 +1040,7 @@ IedConnection_getLogicalDeviceVariablesAsync(IedConnection self, IedClientError*
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError err = MMS_ERROR_NONE;
@@ -1072,7 +1072,7 @@ IedConnection_getLogicalDeviceDataSetsAsync(IedConnection self, IedClientError* 
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError err = MMS_ERROR_NONE;
@@ -1141,7 +1141,7 @@ IedConnection_readObjectAsync(IedConnection self, IedClientError* error, const c
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError err = MMS_ERROR_NONE;
@@ -1553,7 +1553,7 @@ IedConnection_writeObjectAsync(IedConnection self, IedClientError* error, const 
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->invokeId = 0;
 
@@ -1899,7 +1899,7 @@ IedConnection_getFileDirectoryAsyncEx(IedConnection self, IedClientError* error,
        return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->specificParameter2.getFileDirectory.cont = true;
 
@@ -2139,7 +2139,7 @@ IedConnection_getFileAsync(IedConnection self, IedClientError* error, const char
        return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsConnection_fileOpenAsync(self->connection, &(call->invokeId), &err, fileName, 0, mmsConnectionFileOpenHandler, self);
@@ -2214,7 +2214,7 @@ IedConnection_setFileAsync(IedConnection self, IedClientError* error, const char
        return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsConnection_obtainFileAsync(self->connection, &(call->invokeId), &err, sourceFilename, destinationFilename, deleteFileAndSetFileHandler, self);
@@ -2254,7 +2254,7 @@ IedConnection_deleteFileAsync(IedConnection self, IedClientError* error, const c
        return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsConnection_fileDeleteAsync(self->connection, &(call->invokeId), &err, fileName, deleteFileAndSetFileHandler, self);
@@ -3250,7 +3250,7 @@ IedConnection_deleteDataSetAsync(IedConnection self, IedClientError* error, cons
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->invokeId = 0;
 
@@ -3320,7 +3320,7 @@ IedConnection_createDataSetAsync(IedConnection self, IedClientError* error, cons
        goto exit_function;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->invokeId = 0;
 
@@ -3549,7 +3549,7 @@ IedConnection_getDataSetDirectoryAsync(IedConnection self, IedClientError* error
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->invokeId = 0;
 
@@ -3788,7 +3788,7 @@ IedConnection_readDataSetValuesAsync(IedConnection self, IedClientError* error, 
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->specificParameter = dataSet;
 
@@ -3954,7 +3954,7 @@ IedConnection_writeDataSetValuesAsync(IedConnection self, IedClientError* error,
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
 
     MmsError err = MMS_ERROR_NONE;
@@ -4060,7 +4060,7 @@ IedConnection_queryLogByTimeAsync(IedConnection self, IedClientError* error, con
             return 0;
         }
 
-        call->callback = handler;
+        call->callback = (void *) handler;
         call->callbackParameter = parameter;
 
         MmsError err = MMS_ERROR_NONE;
@@ -4116,7 +4116,7 @@ IedConnection_queryLogAfterAsync(IedConnection self, IedClientError* error, cons
             return 0;
         }
 
-        call->callback = handler;
+        call->callback = (void *) handler;
         call->callbackParameter = parameter;
 
         MmsError err = MMS_ERROR_NONE;

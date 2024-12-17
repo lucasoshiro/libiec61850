@@ -613,7 +613,7 @@ IedConnection_getRCBValuesAsync(IedConnection self, IedClientError* error, const
         return 0;
     }
 
-    call->callback = handler;
+    call->callback = (void *) handler;
     call->callbackParameter = parameter;
     call->specificParameter = updateRcb;
     call->specificParameter2.pointer = StringUtils_copyString(rcbReference);
@@ -1030,7 +1030,7 @@ IedConnection_setRCBValuesAsync(IedConnection self, IedClientError* error, Clien
          goto exit_function;
      }
 
-     call->callback = handler;
+     call->callback = (void *) handler;
      call->callbackParameter = parameter;
      call->specificParameter = rcb;
 
